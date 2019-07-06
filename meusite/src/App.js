@@ -1,51 +1,48 @@
-/*FORMULARIOS */
+/** APP Biscoite da Sorte */
 import React, { Component } from "react";
+import './estilo.css';
 
 /*Aqui criamos uma class a chamadora principal*/ 
 class App extends Component{
     
-       /** As states ficam dentro do contructor, sao as variavies que irao variar de acordo com o que voce queria meu jovem padauan */
     constructor(props){
-
         super(props);
         this.state = {
-            email: 'daniel.tokarski@hotmail.com',
-            senha: '12343',
-            sexo: 'Masculino'
+            textoFrase: 'Frase Aleatoria......'
         };
-        this.trocaEmail = this.trocaEmail.bind(this);
-        this.trocaSexo  = this.trocaSexo.bind(this);
+        
+        this.frases = ["Os ultimos serao os primeiros and vice versa!",
+                       "Deus eh bom, mereça essa bondade.",
+                       "A vida nao eh facil, não torne-a mais dificil.",
+                       "Eh aprendendo que se aprende!"];
+        this.quebraBiscoito = this.quebraBiscoito.bind(this);
     }
 
-    trocaEmail(evento){
-        let valorDigitado = evento.target.value;
-        this.setState({email: valorDigitado})
-    }   
-    trocaSexo(evento){
-        let valorDigitado = evento.target.value
-        this.setState({sexo: valorDigitado});
+    quebraBiscoito(){
+        let varstate = this.state; /*Acessando states*/
+        let numeroAleatorio = Math.floor(Math.random() * this.frases.length);
+        varstate.textoFrase = '" ' + this.frases[numeroAleatorio] + ' "';
+        this.setState(varstate);
     }
+
     render(){
         return(
-            <div>   
-                <h2>LOGIN NO SISTEMA</h2>
-                Email: 
-                <input type="email" name="email" value={this.state.email} onChange={this.trocaEmail}></input><br></br>
-                Senha:
-                <input type="password" name="senha" value={this.state.senha} onChange={(evento) => this.setState({senha: evento.target.value})}></input>
-                <br></br>
-                Sexo:
-                <select name="sexo" value={this.state.sexo} onChange={this.trocaSexo}>
-                    <option value="Masculino">Masculino</option>
-                    <option value="Feminino" >Feminino</option>
-                </select>
-                <h2>Mudanca State Email: {this.state.email}</h2>
-                <h2>Mudanca State Senha: {this.state.senha}</h2>
-                <h2>Mudanca State Sexo.: {this.state.sexo}</h2>
-
+            <div className="container">   
+                <img className="img" src={require('./assets/biscoito.png')}></img>
+                <Botao nome="Abrir Biscoito" acaoBtn={this.quebraBiscoito}/>
+                <h3 className="textoFrase">{this.state.textoFrase}</h3>
             </div>
         )
-    }    
+    }
 }
 
+class Botao extends Component{
+    render(){
+        return(
+            <div>
+                <button onClick={this.props.acaoBtn}> {this.props.nome}</button>
+            </div>
+        )
+    }
+}
 export default App;

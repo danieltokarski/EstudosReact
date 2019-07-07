@@ -21,7 +21,7 @@ class App extends Component{
         setInterval(()=>{
             this.setState({ hora: new Date().toLocaleTimeString() })    
             }, 1000);
-    }
+    }       
 
     /** ESTAGIO 03 - COMO EU SETEI O RELOGIO TODA A VEZ ELE SERA EXECUTADO, SENDO ASSIM A PAGINA EH ALTERADA ENTAO A FUNCAO ABAIXO EH CHAMADA */
     componentDidUpdate(){

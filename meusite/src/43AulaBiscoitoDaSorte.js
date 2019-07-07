@@ -21,7 +21,7 @@ class App extends Component{
     quebraBiscoito(){
         let varstate = this.state; /*Acessando states*/
         let numeroAleatorio = Math.floor(Math.random() * this.frases.length);
-        varstate.textoFrase = '" ' + this.frases[numeroAleatorio] + ' "';
+        varstate.textoFrase = '" ' + this.frases[numeroAleatorio] + '"';
         this.setState(varstate);
     }
 
